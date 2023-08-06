@@ -2,6 +2,7 @@ import React from 'react';
 import { Header, Icon } from 'react-native-elements';
 import { themeColor } from '../utils/ThemeUtils';
 import { StyleProp, ViewStyle } from 'react-native';
+import { localeString } from '../utils/LocaleUtils';
 
 interface HeaderProps {
     leftComponent?: 'Back' | 'Close' | JSX.Element;
@@ -23,6 +24,7 @@ function ZeusHeader(props: HeaderProps) {
             }}
             color={themeColor('text')}
             underlayColor="transparent"
+            accessibilityLabel={localeString('general.goBack')}
         />
     );
 
@@ -35,6 +37,7 @@ function ZeusHeader(props: HeaderProps) {
             }}
             color={themeColor('text')}
             underlayColor="transparent"
+            accessibilityLabel={localeString('general.close')}
         />
     );
 

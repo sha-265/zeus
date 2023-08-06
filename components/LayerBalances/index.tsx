@@ -39,21 +39,27 @@ type DataRow = {
 };
 
 const Row = ({ item }: { item: DataRow }) => (
-    <RectButton
-        style={{
-            ...styles.rectButton,
-            backgroundColor: themeColor('secondary')
-        }}
-    >
-        <View style={styles.left}>
-            {item.layer === 'On-chain' ? <OnChainSvg /> : <LightningSvg />}
-            <Spacer width={5} />
-            <Text style={{ ...styles.layerText, color: themeColor('text') }}>
-                {item.layer}
-            </Text>
-        </View>
+    <RectButton>
+        <View
+            accessible
+            accessibilityRole="button"
+            style={{
+                ...styles.rectButton,
+                backgroundColor: themeColor('secondary')
+            }}
+        >
+            <View style={styles.left}>
+                {item.layer === 'On-chain' ? <OnChainSvg /> : <LightningSvg />}
+                <Spacer width={5} />
+                <Text
+                    style={{ ...styles.layerText, color: themeColor('text') }}
+                >
+                    {item.layer}
+                </Text>
+            </View>
 
-        <Amount sats={item.balance} sensitive />
+            <Amount sats={item.balance} sensitive />
+        </View>
     </RectButton>
 );
 

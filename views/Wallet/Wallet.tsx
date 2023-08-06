@@ -422,6 +422,9 @@ export default class Wallet extends React.Component<WalletProps, WalletState> {
                                             'Activity'
                                         )
                                     }
+                                    accessibilityLabel={localeString(
+                                        'general.activity'
+                                    )}
                                 >
                                     <CaretUp
                                         stroke={themeColor('text')}
