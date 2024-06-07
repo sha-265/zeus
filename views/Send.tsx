@@ -320,7 +320,7 @@ export default class Send extends React.Component<SendProps, SendState> {
             utxos,
             utxoBalance,
             amount:
-                implementation === 'c-lightning-REST' ? 'all' : prevState.amount
+                implementation === 'c-lightning-REST'  || 'cln-rest' ? 'all' : prevState.amount
         }));
     };
 

@@ -1290,7 +1290,8 @@ export default class NodeConfiguration extends React.Component<
                             </>
                         )}
                         {(implementation === 'lnd' ||
-                            implementation === 'c-lightning-REST') && (
+                            'c-lightning-REST' ||
+                            'cln-rest') && (
                             <>
                                 <Text
                                     style={{

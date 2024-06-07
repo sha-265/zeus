@@ -127,7 +127,7 @@ export default class Sweep extends React.Component<SweepProps, SweepState> {
 
         let request;
         request =
-            implementation === 'c-lightning-REST'
+            implementation === 'c-lightning-REST' || 'cln-rest'
                 ? {
                       addr: destination,
                       sat_per_vbyte: fee,

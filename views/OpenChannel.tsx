@@ -504,9 +504,10 @@ export default class OpenChannel extends React.Component<
                                                 this.setState({
                                                     fundMax: newValue,
                                                     local_funding_amount:
-                                                        newValue &&
-                                                        implementation ===
-                                                            'c-lightning-REST'
+                                                        (newValue &&
+                                                            implementation ===
+                                                                'c-lightning-REST') ||
+                                                        'cln-rest'
                                                             ? 'all'
                                                             : ''
                                                 });
