@@ -31,9 +31,38 @@ export default class CLNRest extends LND {
     };
 
     getTransactions = () =>
-        this.postRequest('/v1/listfunds').then((data: any) => ({
-            transactions: data.outputs
-        }));
+        Promise.all([
+            this.postRequest('/v1/bkpr-listaccountevents', { account: 'wallet' }),
+            this.postRequest('/v1/getinfo')
+        ]).then(([transactions, getinfo ]) => {
+            const formattedTxs: any[] = [];
+
+            transactions.events.map((tx: any) => {
+                let amount = 0;
+                let txid;
+
+                if (tx.tag === 'deposit') {
+                    amount = tx.credit_msat
+                    txid = tx.outpoint.split(":")[0]
+                } else if ( tx.tag === 'withdrawal' ) {
+                    amount = -Math.abs(tx.debit_msat)
+                    txid = tx.txid
+                }
+
+                formattedTxs.push({
+                    amount: amount / 1000,
+                    block_height: tx.blockheight,
+                    num_confirmations: getinfo.blockheight - tx.blockheight,
+                    time_stamp: tx.timestamp,
+                    txid: txid
+                });
+            });
+
+            return {
+                transactions: formattedTxs
+            };
+        });
+
     getChannels = () =>
         this.postRequest('/v1/listpeers').then((data: any) => {
             const formattedChannels: any[] = [];
