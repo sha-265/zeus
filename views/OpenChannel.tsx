@@ -604,8 +604,7 @@ export default class OpenChannel extends React.Component<
                                     </View>
                                 )}
 
-                                {BackendUtils.isLNDBased() &&
-                                    additionalChannels.length === 0 && (
+                                {additionalChannels.length === 0 && (
                                         <>
                                             <Text
                                                 style={{
